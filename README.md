@@ -22,12 +22,15 @@ This smart contract will get deployed to your NEAR account. For this example, pl
 In the project root, log in to your newly created account with near-cli by following the instructions after this command.
 
 near login
+
 To make this tutorial easier to copy/paste, we're going to set an environment variable for our account id. In the below command, replace MY_ACCOUNT_NAME with the account name we just logged in with, including the .testnet (or .near for mainnet):
 
 ID=MY_ACCOUNT_NAME
+
 We can tell if the environment variable is set correctly if our command line prints the account name after this command:
 
 echo $ID
+
 Now we can deploy the compiled contract in this example to your account:
 
 near deploy --wasmFile res/non_fungible_token.wasm --accountId $ID
@@ -54,7 +57,4 @@ Then we'll transfer over the NFT into Alice's account. Exactly 1 yoctoNEAR of de
 
 near call $ID nft_transfer '{"token_id": "0", "receiver_id": "alice.'$ID'", "memo": "transfer ownership"}' --accountId $ID --depositYocto 1
 Checking Alice's account again shows us that she has the Olympus Mons token.
-## Notes
-The maximum balance value is limited by U128 (2**128 - 1).
-JSON calls should pass U128 as a base-10 string. E.g. "100".
-This does not include escrow functionality, as ft_transfer_call provides a superior approach. An escrow system can, of course, be added as a separate contract or additional functionality within this contract.
+
