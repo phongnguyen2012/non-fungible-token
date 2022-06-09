@@ -1,11 +1,11 @@
 # non-fungible-token(NFT)
 This repository includes an example implementation of a non-fungible token contract which uses near-contract-standards and simulation tests.
-# Building this contract
+## Building this contract
 Run the following, and we'll build our rust project up via cargo. This will generate our WASM binaries into our res/ directory. This is the smart contract we'll be deploying onto the NEAR blockchain later.
 
 ./scripts/build.sh
 
-# Testing this contract
+## Testing this contract
 We have some tests that you can run. For example, the following will run our simple tests to verify that our contract code is working.
 Unit Tests
 
@@ -15,8 +15,8 @@ Integration Tests Rust
 
 cd integration-tests/rs
 cargo run --example integration-tests
-# Using this contract
- # Standard deploy
+## Using this contract
+ ### Standard deploy
 This smart contract will get deployed to your NEAR account. For this example, please create a new NEAR account. Because NEAR allows the ability to upgrade contracts on the same account, initialization functions must be cleared. If you'd like to run this example on a NEAR account that has had prior contracts deployed, please use the near-cli command near delete, and then recreate it in Wallet. To create (or recreate) an account, please follow the directions in Test Wallet or (NEAR Wallet if we're using mainnet).
 
 In the project root, log in to your newly created account with near-cli by following the instructions after this command.
@@ -54,7 +54,7 @@ Then we'll transfer over the NFT into Alice's account. Exactly 1 yoctoNEAR of de
 
 near call $ID nft_transfer '{"token_id": "0", "receiver_id": "alice.'$ID'", "memo": "transfer ownership"}' --accountId $ID --depositYocto 1
 Checking Alice's account again shows us that she has the Olympus Mons token.
-# Notes
+## Notes
 The maximum balance value is limited by U128 (2**128 - 1).
 JSON calls should pass U128 as a base-10 string. E.g. "100".
 This does not include escrow functionality, as ft_transfer_call provides a superior approach. An escrow system can, of course, be added as a separate contract or additional functionality within this contract.
